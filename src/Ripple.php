@@ -394,6 +394,24 @@ class Ripple
      * @return array
      * @throws \Exception
      */
+    public function getBookOffers($options)
+    {
+        $result = $this->client->sendRequestWss('POST','/send-xrp', $options);
+
+        if(empty($result)) {
+            throw new \Exception('Транзакция не отправлена');
+        } else {
+            return $result;
+        }
+    }
+    
+    /**
+     * Отправляем средства используя стронний сервер
+     *
+     * @param $options
+     * @return array
+     * @throws \Exception
+     */
     public function sendAndSubmitForServer($options)
     {
         $result = $this->client->sendRequestWss('POST','/send-xrp', $options);
